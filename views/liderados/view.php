@@ -48,8 +48,8 @@
                         <h3>Estatísticas</h3>
                         <div class="metrics">
                             <div class="metric-box">
-                                <div class="metric-value"><?php echo count($liderado['projetos']); ?></div>
-                                <div class="metric-label">Projetos</div>
+                            <div class="metric-value"><?php echo isset($liderado['projetos']) ? count($liderado['projetos']) : 0; ?></div>
+                            <div class="metric-label">Projetos</div>
                             </div>
                             <div class="metric-box">
                                 <div class="metric-value"><?php echo $estatisticas['total_atividades']; ?></div>

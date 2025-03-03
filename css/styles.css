@@ -28,6 +28,15 @@ header {
     gap: 20px;
 }
 
+.button-group {
+    display: flex;
+    gap: 10px; /* Espaçamento entre os botões */
+}
+
+.d-flex {
+    display: flex;
+    gap: 10px; /* Espaçamento entre os botões */
+}
 .navbar a {
     color: white;
     text-decoration: none;

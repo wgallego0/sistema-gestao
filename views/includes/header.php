@@ -38,8 +38,14 @@ $sidebarPosition = $themeSettings['sidebar_position'] ?? 'left';
         </div>
         <div class="navbar">
             <a href="<?php echo BASE_URL; ?>/index.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">Dashboard</a>
-            <a href="<?php echo BASE_URL; ?>/liderados.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'liderados.php' ? 'active' : ''; ?>">Equipe</a>
-            <a href="<?php echo BASE_URL; ?>/projetos.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'projetos.php' ? 'active' : ''; ?>">Projetos</a>
+            <a href="<?php echo BASE_URL; ?>/liderados.php" 
+                class="<?php echo (strpos($_SERVER['REQUEST_URI'], 'liderados.php') !== false) ? 'active' : ''; ?>">
+                Equipe
+            </a>
+            <a href="<?php echo BASE_URL; ?>/projetos.php" 
+                class="<?php echo (strpos($_SERVER['REQUEST_URI'], 'projetos.php') !== false) ? 'active' : ''; ?>">
+                Projetos
+            </a>
             <a href="<?php echo BASE_URL; ?>/atividades.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'atividades.php' ? 'active' : ''; ?>">Atividades</a>
             <a href="<?php echo BASE_URL; ?>/oprs.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'oprs.php' ? 'active' : ''; ?>">OPRs</a>
             <?php if (isLoggedIn() && hasPermission('admin')): ?>
