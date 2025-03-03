@@ -47,13 +47,12 @@
                     
                     <div>
                         <h3>Métricas</h3>
-                        <div class="metrics">
-                            <div class="metric-box">
-                                <div class="metric-value"><?php echo is_array($projeto['membros']) ? count($projeto['membros']) : 0; ?></div>
+                        <div class="metric-box">
+                                <div class="metric-value"><?php echo isset($projeto['membros']) && is_array($projeto['membros']) ? count($projeto['membros']) : 0; ?></div>
                                 <div class="metric-label">Membros</div>
                             </div>
                             <div class="metric-box">
-                                <div class="metric-value"><?php echo is_array($projeto['atividades']) ? count($projeto['atividades']) : 0; ?></div>
+                                <div class="metric-value"><?php echo isset($projeto['atividades']) && is_array($projeto['atividades']) ? count($projeto['atividades']) : 0; ?></div>
                                 <div class="metric-label">Atividades</div>
                             </div>
                             <div class="metric-box">
@@ -63,83 +62,82 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="grid-2">
-                <!-- Membros do Projeto -->
-                <div class="card">
-                    <h3>Membros</h3>
-                    <?php if (empty($projeto['membros'])): ?>
-                        <p class="empty-message">Nenhum membro associado</p>
-                    <?php else: ?>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Cargo</th>
-                                    <th>Dedicação</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($projeto['membros'] as $membro): ?>
-                                    <tr>
-                                        <td>
-                                            <a href="<?php echo BASE_URL; ?>/liderados.php?action=view&id=<?php echo $membro['liderado_id']; ?>">
-                                                <?php echo htmlspecialchars($membro['liderado_nome']); ?>
-                                            </a>
-                                        </td>
-                                        <td><?php echo htmlspecialchars($membro['liderado_cargo']); ?></td>
-                                        <td><?php echo $membro['percentual_dedicacao']; ?>%</td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    <?php endif; ?>
-                </div>
                 
-                <!-- Atividades do Projeto -->
-                <div class="card">
-                    <h3>Atividades</h3>
-                    <?php if (empty($projeto['atividades'])): ?>
-                        <p class="empty-message">Nenhuma atividade registrada</p>
-                    <?php else: ?>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Título</th>
-                                    <th>Status</th>
-                                    <th>Prioridade</th>
-                                    <th>Horas</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($projeto['atividades'] as $atividade): ?>
+                <div class="grid-2">
+                    <!-- Membros do Projeto -->
+                    <div class="card">
+                        <h3>Membros</h3>
+                        <?php if (!isset($projeto['membros']) || empty($projeto['membros'])): ?>
+                            <p class="empty-message">Nenhum membro associado</p>
+                        <?php else: ?>
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <a href="<?php echo BASE_URL; ?>/atividades.php?action=view&id=<?php echo $atividade['id']; ?>">
-                                                <?php echo htmlspecialchars($atividade['titulo']); ?>
-                                            </a>
-                                        </td>
-                                        <td><?php echo $atividade['status']; ?></td>
-                                        <td>
-                                            <span class="badge <?php 
-                                                echo $atividade['prioridade'] === 'Alta' ? 'badge-danger' : 
-                                                    ($atividade['prioridade'] === 'Média' ? 'badge-warning' : 'badge-info'); 
-                                            ?>">
-                                                <?php echo $atividade['prioridade']; ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <?php echo number_format($atividade['horas_realizadas'], 1); ?> / 
-                                            <?php echo number_format($atividade['horas_estimadas'], 1); ?>h
-                                        </td>
+                                        <th>Nome</th>
+                                        <th>Cargo</th>
+                                        <th>Dedicação</th>
                                     </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    <?php endif; ?>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($projeto['membros'] as $membro): ?>
+                                        <tr>
+                                            <td>
+                                                <a href="<?php echo BASE_URL; ?>/liderados.php?action=view&id=<?php echo $membro['liderado_id']; ?>">
+                                                    <?php echo htmlspecialchars($membro['liderado_nome']); ?>
+                                                </a>
+                                            </td>
+                                            <td><?php echo htmlspecialchars($membro['liderado_cargo']); ?></td>
+                                            <td><?php echo $membro['percentual_dedicacao']; ?>%</td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        <?php endif; ?>
+                    </div>
+                    
+                    <!-- Atividades do Projeto -->
+                    <div class="card">
+                        <h3>Atividades</h3>
+                        <?php if (!isset($projeto['atividades']) || empty($projeto['atividades'])): ?>
+                            <p class="empty-message">Nenhuma atividade registrada</p>
+                        <?php else: ?>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Título</th>
+                                        <th>Status</th>
+                                        <th>Prioridade</th>
+                                        <th>Horas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($projeto['atividades'] as $atividade): ?>
+                                        <tr>
+                                            <td>
+                                                <a href="<?php echo BASE_URL; ?>/atividades.php?action=view&id=<?php echo $atividade['id']; ?>">
+                                                    <?php echo htmlspecialchars($atividade['titulo']); ?>
+                                                </a>
+                                            </td>
+                                            <td><?php echo $atividade['status']; ?></td>
+                                            <td>
+                                                <span class="badge <?php 
+                                                    echo $atividade['prioridade'] === 'Alta' ? 'badge-danger' : 
+                                                        ($atividade['prioridade'] === 'Média' ? 'badge-warning' : 'badge-info'); 
+                                                ?>">
+                                                    <?php echo $atividade['prioridade']; ?>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <?php echo isset($atividade['horas_realizadas']) ? number_format($atividade['horas_realizadas'], 1) : '0'; ?> / 
+                                                <?php echo isset($atividade['horas_estimadas']) ? number_format($atividade['horas_estimadas'], 1) : '0'; ?>h
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        <?php endif; ?>
+                    </div>
                 </div>
-            </div>
             
             <!-- Gráficos de Progresso -->
             <div class="grid-2">
