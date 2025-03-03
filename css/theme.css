@@ -1,164 +1,23 @@
-/* theme.css - Dynamic theme file for the system */
-
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --accent-color: #2ecc71;
-    --background-color: #f5f5f5;
-    --text-color: #333333;
-    --header-color: #2c3e50;
-    --sidebar-color: #ffffff;
-    --card-color: #ffffff;
-    --button-primary-color: #3498db;
-    --button-success-color: #2ecc71;
-    --button-danger-color: #e74c3c;
-    --button-warning-color: #f39c12;
-  }
-  
-  /* Base Elements */
-  body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-  }
-  
-  header {
-    background-color: var(--header-color);
-    color: white;
-  }
-  
-  .sidebar {
-    background-color: var(--sidebar-color);
-  }
-  
-  .card {
-    background-color: var(--card-color);
-  }
-  
-  /* Buttons */
-  .btn {
-    background-color: var(--button-primary-color);
-    color: white;
-  }
-  
-  .btn:hover {
-    background-color: color-mix(in srgb, var(--button-primary-color), black 20%);
-  }
-  
-  .btn-success {
-    background-color: var(--button-success-color);
-  }
-  
-  .btn-success:hover {
-    background-color: color-mix(in srgb, var(--button-success-color), black 20%);
-  }
-  
-  .btn-danger {
-    background-color: var(--button-danger-color);
-  }
-  
-  .btn-danger:hover {
-    background-color: color-mix(in srgb, var(--button-danger-color), black 20%);
-  }
-  
-  .btn-warning {
-    background-color: var(--button-warning-color);
-  }
-  
-  .btn-warning:hover {
-    background-color: color-mix(in srgb, var(--button-warning-color), black 20%);
-  }
-  
-  /* Navigation */
-  .navbar a {
-    color: white;
-  }
-  
-  .navbar a:hover, .navbar a.active {
-    background-color: var(--secondary-color);
-  }
-  
-  /* Metrics */
-  .metric-box {
-    background-color: var(--sidebar-color);
-    border: 1px solid color-mix(in srgb, var(--background-color), black 10%);
-  }
-  
-  .metric-value {
-    color: var(--primary-color);
-  }
-  
-  /* Table */
-  .table th {
-    background-color: color-mix(in srgb, var(--background-color), black 5%);
-  }
-  
-  .table tr:hover {
-    background-color: color-mix(in srgb, var(--background-color), var(--accent-color) 10%);
-  }
-  
-  /* Logo adjustment if enabled */
-  .logo-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .site-logo {
-    max-height: 40px;
-    margin-right: 10px;
-  }
-  
-  /* Badges */
-  .badge-primary {
-    background-color: var(--secondary-color);
-  }
-  
-  .badge-success {
-    background-color: var(--button-success-color);
-  }
-  
-  .badge-warning {
-    background-color: var(--button-warning-color);
-  }
-  
-  .badge-danger {
-    background-color: var(--button-danger-color);
-  }
-  
-  /* Tabs */
-  .tab-btn.active {
-    border-bottom-color: var(--accent-color);
-    color: var(--accent-color);
-  }
-  
-  /* Forms */
-  .form-control:focus {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 2px rgba(var(--accent-color), 0.2);
-  }
-  
-  /* Conditional layout for sidebar position */
-  .sidebar-right .main-content {
-    flex-direction: row-reverse;
-  }
-  
-  /* Use theme colors for various components */
-  .chart-container {
-    background-color: var(--card-color);
-    border-color: color-mix(in srgb, var(--background-color), black 10%);
-  }
-  
-  .notification-success {
-    background-color: var(--button-success-color);
-  }
-  
-  .notification-error {
-    background-color: var(--button-danger-color);
-  }
-  
-  .notification-warning {
-    background-color: var(--button-warning-color);
-  }
-  
-  .notification-info {
-    background-color: var(--button-primary-color);
-  }
+  --primary-color: #2ce82f;
+  --secondary-color: #3498db;
+  --accent-color: #2ecc71;
+  --background-color: #f5f5f5;
+  --text-color: #333333;
+  --header-color: #2c3e50;
+  --sidebar-color: #ffffff;
+  --card-color: #ffffff;
+  --button-primary-color: #3498db;
+  --button-success-color: #1f8e4d;
+  --button-danger-color: #e74c3c;
+  --button-warning-color: #f39c12;
+}
+
+body { background-color: var(--background-color); color: var(--text-color); }
+header { background-color: var(--header-color); }
+.sidebar { background-color: var(--sidebar-color); }
+.card { background-color: var(--card-color); }
+.btn { background-color: var(--button-primary-color); }
+.btn-success { background-color: var(--button-success-color); }
+.btn-danger { background-color: var(--button-danger-color); }
+.btn-warning { background-color: var(--button-warning-color); }
