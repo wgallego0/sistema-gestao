@@ -1,0 +1,6 @@
+[2025-03-03 01:22:28] Erro de conexão com o banco de dados: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for localhost123 failed: Este host n�o � conhecido. 
+[2025-03-03 01:34:49] Erro ao gerar token de recuperação: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'sistema_gestao_equipe.tokens_recuperacao' doesn't exist
+[2025-03-03 01:35:17] Erro ao gerar token de recuperação: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'sistema_gestao_equipe.tokens_recuperacao' doesn't exist
+[2025-03-03 01:35:24] Erro ao gerar token de recuperação: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'sistema_gestao_equipe.tokens_recuperacao' doesn't exist
+[2025-03-03 01:35:28] Erro ao gerar token de recuperação: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'sistema_gestao_equipe.tokens_recuperacao' doesn't exist
+[2025-03-03 01:36:31] Erro ao gerar token de recuperação: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'sistema_gestao_equipe.tokens_recuperacao' doesn't exist
