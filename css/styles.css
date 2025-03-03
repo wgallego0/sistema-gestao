@@ -76,7 +76,29 @@ header {
 .sidebar li:hover {
     color: #3498db;
 }
+/* Limitador para imagens do tema */
+img.theme-image {
+    max-width: 350px; /* Define um limite de largura */
+    max-height: 150px; /* Define um limite de altura */
+    object-fit: contain; /* Garante que a imagem se ajuste dentro do limite */
+    display: block;
+    margin: 10px auto;
+}
 
+/* Ajuste do título ao lado do logo */
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.header-container img {
+    max-height: 60px;
+}
+.header-container .site-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
 .content {
     flex: 3;
     background-color: white;

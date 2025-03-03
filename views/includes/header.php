@@ -24,6 +24,7 @@ $sidebarPosition = $themeSettings['sidebar_position'] ?? 'left';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 </head>
+
 <body class="<?php echo $sidebarPosition === 'right' ? 'sidebar-right' : ''; ?>">
     <!-- Notificação -->
     <div class="notification" id="notification"></div>
@@ -32,9 +33,12 @@ $sidebarPosition = $themeSettings['sidebar_position'] ?? 'left';
     <header>
         <div class="logo-container">
             <?php if ($showLogo && !empty($logoUrl)): ?>
-                <img src="<?php echo BASE_URL . $logoUrl; ?>" alt="Logo" class="site-logo">
+                <div class="header-container">
+                    <img src="<?php echo BASE_URL . $themeSettings['logo_url']; ?>" alt="Logo" class="theme-logo">
+                    <h2 class="site-title"><?php echo htmlspecialchars($themeSettings['site_name']); ?></h2>
+                </div>
             <?php endif; ?>
-            <h2><?php echo htmlspecialchars($siteName); ?></h2>
+            
         </div>
         <div class="navbar">
             <a href="<?php echo BASE_URL; ?>/index.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">Dashboard</a>
