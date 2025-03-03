@@ -1,5 +1,4 @@
 <?php
-namespace Models;
 require_once __DIR__ . '/../config.php';
 
 class Liderado {

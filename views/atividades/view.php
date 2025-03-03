@@ -1,4 +1,17 @@
-btn btn-primary">
+<?php require_once __DIR__ . '/../includes/header.php'; ?>
+
+<div class="container">
+    <div class="main-content">
+        <!-- Sidebar com opções -->
+        <?php require_once __DIR__ . '/../includes/sidebar.php'; ?>
+        
+        <!-- Conteúdo principal -->
+        <div class="content">
+            <div class="card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2><?php echo htmlspecialchars($atividade['titulo']); ?></h2>
+                    <div>
+                        <a href="<?php echo BASE_URL; ?>/atividades.php?action=edit&id=<?php echo $atividade['id']; ?>" class="btn btn-primary">
                             <i class="fa fa-edit"></i> Editar
                         </a>
                         <?php if (hasPermission('gestor') || hasPermission('admin')): ?>

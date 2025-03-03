@@ -1,28 +1,9 @@
 <?php
-// Configurações de erro
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 // Incluir configurações e autoloader
 require_once __DIR__ . '/../../config.php';
 require_once __DIR__ . '/../../models/Projeto.php';
 require_once __DIR__ . '/../../models/Liderado.php';
 
-// Usar namespaces explicitamente
-use Models\Projeto;
-use Models\Liderado;
-
-if (!class_exists('Models\Projeto')) {
-    echo "ERRO: Classe Projeto não encontrada!<br>";
-    var_dump(get_declared_classes());
-    exit;
-}
-
-if (!class_exists(Liderado::class)) {
-    echo "Classe Liderado não encontrada!";
-    exit;
-}
 ?>
 <!-- Conteúdo do sidebar permanece o mesmo -->
 <div class="sidebar">
