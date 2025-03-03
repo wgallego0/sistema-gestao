@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // Configurações de conexão com o banco de dados
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
@@ -24,6 +27,53 @@ define('LOG_FILE', ROOT_DIR . '/logs/sistema.log');
 // Configurações de segurança
 define('SALT', 'sge_2025_secret_salt'); // Para hash de senhas
 define('TOKEN_EXPIRATION', 3600); // 1 hora em segundos
+
+// Add autoloader
+require_once __DIR__ . '/config/autoload.php';
+
+
+
+spl_autoload_register(function ($className) {
+    // Mapear possíveis localizações de classes
+    $baseDirectories = [
+        __DIR__ . '/models/',
+        __DIR__ . '/controllers/',
+        __DIR__ . '/',
+        'C:/wamp64/www/sistema-gestao/models/',
+        'C:/wamp64/www/sistema-gestao/controllers/'
+    ];
+
+    // Remover namespace
+    $className = str_replace(['Models\\', 'Controllers\\', '\\'], ['', '', '/'], $className);
+
+    // Possíveis nomes de arquivo
+    $fileNames = [
+        $className . '.php',
+        strtolower($className) . '.php',
+        $className . '.class.php'
+    ];
+
+    // Tentar carregar a classe
+    foreach ($baseDirectories as $directory) {
+        foreach ($fileNames as $fileName) {
+            $path = $directory . $fileName;
+            
+            if (file_exists($path)) {
+                require_once $path;
+                
+                // Verificar se a classe foi carregada
+                if (class_exists($className, false)) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    // Registrar erro se a classe não for encontrada
+    error_log("Classe não encontrada: $className");
+    return false;
+});
+
 
 // Função para conectar com o banco de dados
 function getConnection() {
@@ -205,3 +255,10 @@ function setConfig($key, $value, $description = null) {
         return false;
     }
 }
+
+function custom_error_handler($errno, $errstr, $errfile, $errline) {
+    error_log("Erro PHP [$errno]: $errstr em $errfile na linha $errline");
+    return false; // Deixar o tratador de erros padrão lidar com o erro
+}
+
+set_error_handler('custom_error_handler');
