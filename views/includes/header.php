@@ -16,11 +16,11 @@
     <header>
         <h2>Sistema de Gestão de Equipes</h2>
         <div class="navbar">
-            <a href="<?php echo BASE_URL; ?>/index.php" class="<?php echo !isset($_GET['page']) || $_GET['page'] === 'dashboard' ? 'active' : ''; ?>" data-page="dashboard">Dashboard</a>
-            <a href="<?php echo BASE_URL; ?>/liderados.php" class="<?php echo isset($_GET['page']) && $_GET['page'] === 'equipe' ? 'active' : ''; ?>" data-page="equipe">Equipe</a>
-            <a href="<?php echo BASE_URL; ?>/projetos.php" class="<?php echo isset($_GET['page']) && $_GET['page'] === 'projetos' ? 'active' : ''; ?>" data-page="projetos">Projetos</a>
-            <a href="<?php echo BASE_URL; ?>/atividades.php" class="<?php echo isset($_GET['page']) && $_GET['page'] === 'atividades' ? 'active' : ''; ?>" data-page="atividades">Atividades</a>
-            <a href="<?php echo BASE_URL; ?>/oprs.php" class="<?php echo isset($_GET['page']) && $_GET['page'] === 'oprs' ? 'active' : ''; ?>" data-page="oprs">OPRs</a>
+            <a href="<?php echo BASE_URL; ?>/index.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">Dashboard</a>
+            <a href="<?php echo BASE_URL; ?>/models/liderados.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'liderados.php' ? 'active' : ''; ?>">Equipe</a>
+            <a href="<?php echo BASE_URL; ?>/models/projetos.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'projetos.php' ? 'active' : ''; ?>">Projetos</a>
+            <a href="<?php echo BASE_URL; ?>/models/atividades.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'atividades.php' ? 'active' : ''; ?>">Atividades</a>
+            <a href="<?php echo BASE_URL; ?>/models/oprs.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'oprs.php' ? 'active' : ''; ?>">OPRs</a>
             <a href="<?php echo BASE_URL; ?>/logout.php" title="Sair"><i class="fas fa-sign-out-alt"></i></a>
         </div>
     </header>

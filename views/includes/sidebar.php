@@ -1,12 +1,14 @@
+<!-- Modificar em views/includes/sidebar.php -->
+
 <div class="sidebar">
     <h3>Menu Rápido</h3>
     <ul>
         <?php if (hasPermission('gestor') || hasPermission('admin')): ?>
-            <li data-action="novo_liderado">Novo Liderado</li>
-            <li data-action="novo_projeto">Novo Projeto</li>
+            <li><a href="<?php echo BASE_URL; ?>/liderados.php?action=create" style="text-decoration: none; color: inherit;">Novo Liderado</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/projetos.php?action=create" style="text-decoration: none; color: inherit;">Novo Projeto</a></li>
         <?php endif; ?>
-        <li data-action="nova_atividade">Nova Atividade</li>
-        <li data-action="novo_opr">Novo OPR</li>
+        <li><a href="<?php echo BASE_URL; ?>/atividades.php?action=create" style="text-decoration: none; color: inherit;">Nova Atividade</a></li>
+        <li><a href="<?php echo BASE_URL; ?>/oprs.php?action=create" style="text-decoration: none; color: inherit;">Novo OPR</a></li>
     </ul>
     
     <h3 style="margin-top: 20px;">Liderados</h3>
@@ -18,7 +20,7 @@
             $liderados = $lideradoModel->getAll();
             
             foreach ($liderados as $liderado) {
-                echo '<li data-id="' . $liderado['id'] . '">' . htmlspecialchars($liderado['nome']) . '</li>';
+                echo '<li><a href="' . BASE_URL . '/liderados.php?action=view&id=' . $liderado['id'] . '" style="text-decoration: none; color: inherit;">' . htmlspecialchars($liderado['nome']) . '</a></li>';
             }
         }
         // Ou mostrar apenas o próprio liderado
@@ -27,7 +29,7 @@
             $liderado = $lideradoModel->getById($_SESSION[SESSION_PREFIX . 'liderado_id']);
             
             if ($liderado) {
-                echo '<li data-id="' . $liderado['id'] . '">' . htmlspecialchars($liderado['nome']) . '</li>';
+                echo '<li><a href="' . BASE_URL . '/liderados.php?action=view&id=' . $liderado['id'] . '" style="text-decoration: none; color: inherit;">' . htmlspecialchars($liderado['nome']) . '</a></li>';
             }
         }
         ?>
@@ -46,7 +48,7 @@
             
             if ($liderado && isset($liderado['projetos'])) {
                 foreach ($liderado['projetos'] as $projeto) {
-                    echo '<li data-id="' . $projeto['projeto_id'] . '">' . htmlspecialchars($projeto['projeto_nome']) . '</li>';
+                    echo '<li><a href="' . BASE_URL . '/projetos.php?action=view&id=' . $projeto['projeto_id'] . '" style="text-decoration: none; color: inherit;">' . htmlspecialchars($projeto['projeto_nome']) . '</a></li>';
                 }
             }
         }
@@ -55,7 +57,7 @@
             $projetos = $projetoModel->getAll();
             
             foreach ($projetos as $projeto) {
-                echo '<li data-id="' . $projeto['id'] . '">' . htmlspecialchars($projeto['nome']) . '</li>';
+                echo '<li><a href="' . BASE_URL . '/projetos.php?action=view&id=' . $projeto['id'] . '" style="text-decoration: none; color: inherit;">' . htmlspecialchars($projeto['nome']) . '</a></li>';
             }
         }
         ?>
@@ -64,9 +66,9 @@
     <?php if (hasPermission('gestor') || hasPermission('admin')): ?>
     <h3 style="margin-top: 20px;">Relatórios</h3>
     <ul>
-        <li data-action="relatorio_horas">Apontamentos</li>
-        <li data-action="relatorio_oprs">OPRs</li>
-        <li data-action="relatorio_projetos">Projetos</li>
+        <li><a href="<?php echo BASE_URL; ?>/relatorios.php?tipo=apontamentos" style="text-decoration: none; color: inherit;">Apontamentos</a></li>
+        <li><a href="<?php echo BASE_URL; ?>/relatorios.php?tipo=oprs" style="text-decoration: none; color: inherit;">OPRs</a></li>
+        <li><a href="<?php echo BASE_URL; ?>/relatorios.php?tipo=projetos" style="text-decoration: none; color: inherit;">Projetos</a></li>
     </ul>
     <?php endif; ?>
 

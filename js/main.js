@@ -22,24 +22,19 @@ function initNavigation() {
     // Navegação principal
     const navLinks = document.querySelectorAll('.navbar a');
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (this.getAttribute('data-page')) {
-                e.preventDefault();
-                
-                // Remover classe ativa de todos os links
+        // Remover o event listener que estava impedindo a navegação normal
+        // Agora os links funcionarão diretamente como links HTML padrão
+        if (link.getAttribute('href').indexOf('logout.php') === -1) {
+            link.addEventListener('click', function() {
+                // Somente remover classe ativa e adicionar ao clicado
                 navLinks.forEach(l => l.classList.remove('active'));
-                
-                // Adicionar classe ativa ao link clicado
                 this.classList.add('active');
-                
-                // Mostrar a página correspondente
-                const pageId = this.getAttribute('data-page');
-                showPage(pageId);
-            }
-        });
+            });
+        }
     });
     
-    // Links de ação rápida na sidebar
+    // Links de ação rápida na sidebar agora são links diretos HTML em vez de usar data-action
+    // Continuamos a manter compatibilidade com o código existente
     const actionLinks = document.querySelectorAll('[data-action]');
     actionLinks.forEach(link => {
         link.addEventListener('click', function() {
@@ -53,40 +48,17 @@ function initNavigation() {
  * Mostrar página específica
  */
 function showPage(pageId) {
-    // Esconder todas as páginas
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => {
-        page.style.display = 'none';
-    });
-    
-    // Mostrar a página selecionada
-    const selectedPage = document.getElementById('page-' + pageId);
-    if (selectedPage) {
-        selectedPage.style.display = 'block';
-    }
-    
-    // Atualizar URL (opcional)
-    window.history.pushState({page: pageId}, '', '?page=' + pageId);
+    // Esta função não é mais utilizada para navegação
+    console.log('showPage foi chamado com ID:', pageId);
 }
 
 /**
  * Manipular ações rápidas
  */
 function handleAction(action) {
+    // A função handleAction é mantida para retrocompatibilidade,
+    // mas a maioria dos links agora são diretamente HTML
     switch (action) {
-        case 'novo_liderado':
-            // Redirecionar para página de criar liderado ou abrir modal
-            window.location.href = BASE_URL + '/liderados.php?action=create';
-            break;
-        case 'novo_projeto':
-            window.location.href = BASE_URL + '/projetos.php?action=create';
-            break;
-        case 'nova_atividade':
-            window.location.href = BASE_URL + '/atividades.php?action=create';
-            break;
-        case 'novo_opr':
-            window.location.href = BASE_URL + '/oprs.php?action=create';
-            break;
         case 'associar_projeto':
             // Abrir modal para associar liderado a projeto
             const modal = document.getElementById('modal-associar');
@@ -95,7 +67,7 @@ function handleAction(action) {
             }
             break;
         default:
-            console.warn('Ação não implementada: ' + action);
+            console.warn('Ação não implementada ou obsoleta: ' + action);
     }
 }
 

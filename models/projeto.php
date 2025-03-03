@@ -42,7 +42,40 @@ class Projeto {
             return [];
         }
     }
-    
+    /**
+     * Buscar projetos por termo
+     * 
+     * @param string $termo Termo de busca
+     * @return array Lista de projetos encontrados
+     */
+    public function buscarPorTermo($termo) {
+        try {
+            $termoBusca = '%' . $termo . '%';
+            
+            $stmt = $this->conn->prepare("
+                SELECT * FROM projetos
+                WHERE (nome LIKE ? OR descricao LIKE ?) AND ativo = 1
+                ORDER BY nome
+                LIMIT 20
+            ");
+            
+            $stmt->execute([$termoBusca, $termoBusca]);
+            
+            $projetos = $stmt->fetchAll();
+            
+            // Adicionar informações adicionais de cada projeto
+            foreach ($projetos as &$projeto) {
+                $projeto['total_membros'] = $this->getTotalMembros($projeto['id']);
+                $projeto['total_atividades'] = $this->getTotalAtividades($projeto['id']);
+                $projeto['total_horas'] = $this->getTotalHoras($projeto['id']);
+            }
+            
+            return $projetos;
+        } catch (PDOException $e) {
+            logError('Erro ao buscar projetos: ' . $e->getMessage());
+            return [];
+        }
+    }
     /**
      * Obter projeto pelo ID
      * 

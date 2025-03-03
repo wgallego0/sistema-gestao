@@ -33,7 +33,31 @@ class Liderado {
             return [];
         }
     }
-    
+    /**
+     * Buscar liderados por termo
+     * 
+     * @param string $termo Termo de busca
+     * @return array Lista de liderados encontrados
+     */
+    public function buscarPorTermo($termo) {
+        try {
+            $termoBusca = '%' . $termo . '%';
+            
+            $stmt = $this->conn->prepare("
+                SELECT * FROM liderados
+                WHERE (nome LIKE ? OR email LIKE ? OR cargo LIKE ?) AND ativo = 1
+                ORDER BY nome
+                LIMIT 20
+            ");
+            
+            $stmt->execute([$termoBusca, $termoBusca, $termoBusca]);
+            
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            logError('Erro ao buscar liderados: ' . $e->getMessage());
+            return [];
+        }
+    }
     /**
      * Obter liderado pelo ID
      * 
